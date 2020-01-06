@@ -79,9 +79,44 @@ MoveUp = {
   'Number' : 16,
   'Time' : 3
 }
+DriveAutoLine = {
+  'Category' : 'Drive',
+  'Number' : 17,
+  'Time' : 2
+}
+DriveRenBarrier = {
+  'Category' : 'Drive',
+  'Number' : 18,
+  'Time' : 1
+}
+DriveTrench = {
+  'Category' : 'Drive',
+  'Number' : 19,
+  'Time' : 1
+}
+DriveGoalToHPS = {
+  'Category' : 'Drive',
+  'Number' : 20,
+  'Time' : 5
+}
+DriveHPSToGoal = {
+  'Category' : 'Drive',
+  'Number' : 21,
+  'Time' : 5
+}
+DriveRenToGoal = {
+  'Category' : 'Drive',
+  'Number' : 22,
+  'Time' : 3
+}
 DriveGoalToRenPerimeter = {
   'Category' : 'Drive',
   'Number' : 23,
+  'Time' : 3
+}
+DriveTrenchToGoal = {
+  'Category' : 'Drive',
+  'Number' : 24,
   'Time' : 3
 }
 
@@ -103,8 +138,16 @@ actions = {
   'AttachToBar' : AttachToBar,
   'MoveUp' : MoveUp,
   'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
+  'DriveAutoLine' : DriveAutoLine,
+  'DriveRenBarrier' : DriveRenBarrier,
+  'DriveTrench' : DriveTrench,
+  'DriveGoalToHPS' : DriveGoalToHPS,
+  'DriveHPSToGoal' : DriveHPSToGoal,
+  'DriveRenToGoal' : DriveRenToGoal,
+  'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
+  'DriveTrenchToGoal' : DriveTrenchToGoal
+}#The individual dictionaries are combined into one
 
-} #The individual dictionaries are combined into one
 #Variables are set to hold the time value for each action
 intfloor_t = IntakeBallFromFloor.get('Time')
 uhps_t = IntakeBallFromUpperHPS.get('Time')
@@ -130,22 +173,20 @@ moveup_t = MoveUp.get('Time')
 goaltorenperimeter_t = DriveGoalToRenPerimeter.get('Time')
 
 ParkRobot = {
-  'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
-  'IntakeBallFromFloor' : IntakeBallFromFloor,
+  #'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
+  #'IntakeBallFromFloor' : IntakeBallFromFloor,
   'Time' : (goaltorenperimeter_t + intfloor_t),
   'Points' : 5
 }
 HangRobot = {
-'IntakeBallFromUpperHPS' : IntakeBallFromUpperHPS,
-'Deploy' : Deploy,
-'AttachToBar' : AttachToBar,
-'MoveUp' : MoveUp,
-'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
+#'IntakeBallFromUpperHPS' : IntakeBallFromUpperHPS,
+#'Deploy' : Deploy,
+#'AttachToBar' : AttachToBar,
+#'MoveUp' : MoveUp,
+#'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
 'Time' : (intfloor_t + deploy_t + attachtobar_t + moveup_t + goaltorenperimeter_t),
 'Points' : 25
 }
-print(ParkRobot)
-print(HangRobot)
 combinations = {
   'ParkRobot' : ParkRobot,
   'HangRobot' : HangRobot
@@ -155,20 +196,21 @@ for y in ParkRobot:
 
 for y in actions:
   print(y)
-
+for y in combinations:
+  print(y)
 intake_t = [intfloor_t, uhps_t, lhps_t, ren_t, trench_t]
 output_t = [outfloor_t, outlow_t, outhigh_t]
 spinner_t = [rotate_t, stopspin_t, detectspin_t]
 
-def intake_math():
-  rand_intake = intake_t[2]
-  while rand_intake < 8:
-    rand_intake += 1
-    print(rand_intake)
-intake_math()
+#def intake_math():
+ # rand_intake = intake_t[2]
+  #while rand_intake < 8:
+  #  rand_intake += 1
+   # print(rand_intake)
+#intake_math()
 
-choice = input()
-if choice in actions:
-  print(choice)
-elif choice in combinations:
-   print(choice)
+#choice = input()
+#if choice in actions:
+ # print(choice)
+#elif choice in combinations:
+ #  print(choice)
