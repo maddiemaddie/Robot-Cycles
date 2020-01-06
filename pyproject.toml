@@ -6,10 +6,6 @@ authors = ["Maddie Tharp <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.7"
-sklearn = "^0.0.0"
-pandas = "^0.25.3"
-pydotplus = "^2.0"
-sheetsu = "^1.1"
 
 [tool.poetry.dev-dependencies]
 
