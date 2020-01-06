@@ -54,37 +54,6 @@ DetectSpinnerColor = {
   'Number' : 11,
   'Time' : 2
 }
-DetectGoals = {
-  'Category' : 'Sensor',
-  'Number' : 12,
-  'Time' : 2
-}
-DetectHPS = {
-  'Category' : 'Sensor',
-  'Number' : 13,
-  'Time' : 2
-}
-Deploy = {
-  'Category' : 'Climbing',
-  'Number' : 14,
-  'Time' : 2
-}
-AttachToBar = {
-  'Category' : 'Climbing',
-  'Number' : 15,
-  'Time' : 1
-}
-MoveUp = {
-  'Category' : 'Climbing',
-  'Number' : 16,
-  'Time' : 3
-}
-DriveGoalToRenPerimeter = {
-  'Category' : 'Drive',
-  'Number' : 23,
-  'Time' : 3
-}
-
 actions = {
   'IntakeBallFromFloor' : IntakeBallFromFloor,
   'IntakeBallFromUpperHPS' : IntakeBallFromUpperHPS,
@@ -96,15 +65,12 @@ actions = {
   'OutputBallToHighGoal' : OutputBallToHighGoal,
   'RotateSpinnerOnce' : RotateSpinnerOnce,
   'StopSpinner' : StopSpinner,
-  'DetectSpinnerColor' : DetectSpinnerColor,
-  'DetectGoals' : DetectGoals,
-  'DetectHPS' : DetectHPS,
-  'Deploy' : Deploy,
-  'AttachToBar' : AttachToBar,
-  'MoveUp' : MoveUp,
-  'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
-
+  'DetectSpinnerColor' : DetectSpinnerColor
 } #The individual dictionaries are combined into one
+
+for y in actions:
+  print(y)
+
 #Variables are set to hold the time value for each action
 intfloor_t = IntakeBallFromFloor.get('Time')
 uhps_t = IntakeBallFromUpperHPS.get('Time')
@@ -119,53 +85,10 @@ outhigh_t = OutputBallToHighGoal.get('Time')
 rotate_t = RotateSpinnerOnce.get('Time')
 stopspin_t = StopSpinner.get('Time')
 detectspin_t = DetectSpinnerColor.get('Time')
-#Sensor Time Variables
-detectgoals_t = DetectGoals.get('Time')
-detectHPS_t = DetectHPS.get('Time')
-#Climbing Time Variables
-deploy_t = Deploy.get('Time')
-attachtobar_t = AttachToBar.get('Time')
-moveup_t = MoveUp.get('Time')
-#Drive Time Variables
-goaltorenperimeter_t = DriveGoalToRenPerimeter.get('Time')
-
-ParkRobot = {
-  'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
-  'IntakeBallFromFloor' : IntakeBallFromFloor,
-  'Time' : (goaltorenperimeter_t + intfloor_t),
-  'Points' : 5
-}
-HangRobot = {
-'IntakeBallFromUpperHPS' : IntakeBallFromUpperHPS,
-'Deploy' : Deploy,
-'AttachToBar' : AttachToBar,
-'MoveUp' : MoveUp,
-'DriveGoalToRenPerimeter' : DriveGoalToRenPerimeter,
-'Time' : (intfloor_t + deploy_t + attachtobar_t + moveup_t + goaltorenperimeter_t),
-'Points' : 25
-}
-print(ParkRobot)
-print(HangRobot)
-combinations = {
-  'ParkRobot' : ParkRobot,
-  'HangRobot' : HangRobot
-}
-for y in ParkRobot:
-  print(ParkRobot.get('Time'))
-
-for y in actions:
-  print(y)
 
 intake_t = [intfloor_t, uhps_t, lhps_t, ren_t, trench_t]
 output_t = [outfloor_t, outlow_t, outhigh_t]
 spinner_t = [rotate_t, stopspin_t, detectspin_t]
-
-def intake_math():
-  rand_intake = intake_t[2]
-  while rand_intake < 8:
-    rand_intake += 1
-    print(rand_intake)
-intake_math()
 
 choice = input()
 if choice in actions:
